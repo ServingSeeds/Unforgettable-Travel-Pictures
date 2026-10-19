@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trip Photos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 id="tripName">Trip Photos</h1>
+    <p id="tripDates"></p>
+    <p><a href="./">← All trips</a></p>
+  </header>
+  <main>
+    <section class="box">
+      <h2>Share your photos</h2>
+      <label for="code">Trip code</label>
+      <input type="password" id="code" autocomplete="off" placeholder="Code from your trip leader">
+      <label for="name">Your name (optional)</label>
+      <input type="text" id="name" maxlength="60" placeholder="e.g. Mary J.">
+      <input type="file" id="fileInput" accept="image/*" multiple>
+      <button class="big-btn" id="addBtn">📷 Add My Photos</button>
+      <div class="progress" id="progress"><div></div></div>
+      <div class="status" id="status"></div>
+    </section>
+
+    <h2>Trip gallery</h2>
+    <div class="gallery" id="gallery"></div>
+    <p class="empty" id="empty" hidden>No photos yet — be the first to add one!</p>
+  </main>
+
+  <div class="viewer" id="viewer">
+    <div class="bar">
+      <a id="dl" download>Download</a>
+      <button id="closeViewer">Close ✕</button>
+    </div>
+    <img id="viewerImg" alt="">
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

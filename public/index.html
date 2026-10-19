@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unforgettable Travel Pictures</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📸 Unforgettable Travel Pictures</h1>
+    <p>Pick your trip to see and share photos</p>
+  </header>
+  <main>
+    <ul class="trip-list" id="trips"><li class="empty">Loading trips…</li></ul>
+  </main>
+  <script>
+    fetch("trips.json", { cache: "no-store" })
+      .then(r => r.json())
+      .then(trips => {
+        const ul = document.getElementById("trips");
+        ul.innerHTML = "";
+        trips.forEach(t => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = "trip.html?id=" + encodeURIComponent(t.id);
+          const s = document.createElement("strong"); s.textContent = t.name;
+          const sp = document.createElement("span"); sp.textContent = [t.dates, t.description].filter(Boolean).join(" · ");
+          a.append(s, sp); li.append(a); ul.append(li);
+        });
+        if (!trips.length) ul.innerHTML = '<li class="empty">No trips yet.</li>';
+      })
+      .catch(() => { document.getElementById("trips").innerHTML = '<li class="empty">Could not load trips.</li>'; });
+  </script>
+</body>
+</html>
